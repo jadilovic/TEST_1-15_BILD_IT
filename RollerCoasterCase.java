@@ -27,6 +27,8 @@ public class RollerCoasterCase {
 		int count = 1;
 		char[] charList = sentence.toCharArray();
 		String newSentence = "";
+		
+		// Going through characters in the Sentence
 		for(int i = 0; i < charList.length; i++){
 			if(charList[i] >= 'A' && charList[i] <='Z' || charList[i] >= 'a' && charList[i] <='z'){
 				if(count % 2 != 0){

@@ -1,6 +1,10 @@
 package Zadaci;
 
 /*
+ *  * By Jasmin Adilovic
+ * Date: 27.09.2019
+ * E-mail: adilovic79@yahoo.com
+ * 
  * 4. Napisati program koji pita korisnika da unese string, a zatim pronalazi i ispisuje prvi karakter koji se ne
 ponavlja u ostatku stringa.
 Input:
