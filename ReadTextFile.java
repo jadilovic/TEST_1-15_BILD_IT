@@ -24,17 +24,38 @@ b. da li korisnik želi da ispiše samo unikatne rijeèi, ne ukljuèujuæi duplikate.
 public class ReadTextFile {
 
 	public static void main(String[] args) {
+		
 		System.out.println("Please enter the name of the file:");
 		Scanner input = new Scanner(System.in);
 		String fileName = input.next();
 		
+		// Checking if the file exists
 		File file = new File(fileName);
 		if(!file.exists()){
 			System.out.println("Entered file does not exisit");
 			System.exit(0);
 		}
 		
+		// Reading the text file and saving words in the ArrayList
 		List<String> allWords = new ArrayList<>();
+		allWords = readingText(allWords, file);
+
+		System.out.println("If you would like to read and write all words including \nduplicates"
+				+ " enter number '1', for only unique words enter '2'");
+		int selection = input.nextInt();
+		input.close();
+		
+		// Selecting what words to print
+		switch(selection){
+		case 1: sortAllWords(allWords);
+		break;
+		case 2: makeUniqueWordsSet(allWords);
+		break;
+		}
+	}
+
+	// Method for reading the text file and making list of all words
+	private static List<String> readingText(List<String> allWords, File file) {
 		Scanner read;
 		try {
 			read = new Scanner(file);
@@ -44,20 +65,10 @@ public class ReadTextFile {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("If you would like to read and write all words including \nduplicates"
-				+ " enter number '1', for only unique words enter '2'");
-		int selection = input.nextInt();
-		input.close();
-		
-		switch(selection){
-		case 1: sortAllWords(allWords);
-		break;
-		case 2: makeUniqueWordsSet(allWords);
-		break;
-		}
+		return allWords;
 	}
 
+	// Method of filtering only unique words in a List
 	private static void makeUniqueWordsSet(List<String> allWords) {
 		Set<String> uniqueWords = new TreeSet<>();
 		for(String word: allWords)
@@ -65,11 +76,13 @@ public class ReadTextFile {
 		print(uniqueWords);
 		}
 
+	// Sorting all words
 	private static void sortAllWords(List<String> allWords) {
 		Collections.sort(allWords);
 		print(allWords);
 	}
 	
+	// Printing words
 	private static void print(Collection<String> words) {
 		for(String word: words)
 			System.out.println(word);

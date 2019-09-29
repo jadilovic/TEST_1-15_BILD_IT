@@ -22,8 +22,7 @@ import java.util.Set;
 public class FindingCharInString {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
 		System.out.println("Please enter any string");
 		Scanner input = new Scanner(System.in);
 		String text = input.next();
@@ -41,21 +40,21 @@ public class FindingCharInString {
 		}
 		
 		// Printing elements in the List and Set
-		System.out.println(charList);
-		System.out.println(charSet);
+		System.out.println("Elements in the list: " + charList);
+		System.out.println("Elements in the Set : " + charSet);
 		
 		// Removing single Set elements contained in the List
 		for(Character ch: charSet)
 			charList.remove(ch);
 		
 		// Printing remaining elements in the List
-		System.out.println(charList);
+		System.out.println("Remaining elements in List: " + charList);
 		
 		// Checking if elements from the Set are in the remaining list
 		for(Character ch: charSet){
 			if(!charList.contains(ch)){
 				// Printing first single element not repeated in the String (initial List of characters)
-				System.out.println(ch);
+				System.out.println("First single element not repeated in the String: " + ch);
 				break;
 			}
 		}

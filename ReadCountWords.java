@@ -26,25 +26,30 @@ public class ReadCountWords {
 		String fileName = input.next();
 		input.close();
 		
+		// Checking if the file exists
 		File file = new File(fileName);
 		if(!file.exists()){
 			System.out.println("File " + fileName + " does not exist");
 			System.exit(0);
 		}
 		
+		// Reading the file and saving the words in the ArrayList
 		List<String> words = new ArrayList<>();
-		
-		try {
-			Scanner read = new Scanner(file);
-			while(read.hasNext()){
-				words.add(read.next());
-			}
-			read.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		words = readText(words, file);
 
+		// Crating integer array to save number of Vowels and Consonants
+		int[] countVowelsConsonants = new int[2];
+		countVowelsConsonants = countEach(words);
+
+		// Printing number of words, vowels and consonants in the text
+		System.out.println("Total number of words in the file " + fileName + " is " + words.size());
+		System.out.println("Total number of vowels in the file " + fileName + " is " + countVowelsConsonants[0]);
+		System.out.println("Total number of consonants in the file " + fileName + " is " + countVowelsConsonants[1]);
+	}
+
+	// Method counting all vowels and consonants in the words
+	private static int[] countEach(List<String> words) {
+		int[] count = new int[2];
 		int countVowels = 0;
 		int countConsonants = 0;
 		for(String word: words){
@@ -60,9 +65,24 @@ public class ReadCountWords {
 				}
 			}
 		}
-		System.out.println("Total number of words in the file " + fileName + " is " + words.size());
-		System.out.println("Total number of vowels in the file " + fileName + " is " + countVowels);
-		System.out.println("Total number of consonants in the file " + fileName + " is " + countConsonants);
+		count[0] = countVowels;
+		count[1] = countConsonants;
+		return count;
+	}
+
+	// Method reading the text and adding words to ArrayList
+	private static List<String> readText(List<String> words, File file) {
+		try {
+			Scanner read = new Scanner(file);
+			while(read.hasNext()){
+				words.add(read.next());
+			}
+			read.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return words;
 	}
 }
 

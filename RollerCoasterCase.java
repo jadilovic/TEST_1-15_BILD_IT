@@ -19,29 +19,39 @@ public class RollerCoasterCase {
 
 	public static void main(String[] args) {
 		
+		// Asking user to enter short sentence
 		System.out.println("Please enter a short sentence:");
 		Scanner input = new Scanner(System.in);
 		String sentence = input.nextLine();
 		input.close();
 		
-		int count = 1;
-		char[] charList = sentence.toCharArray();
-		String newSentence = "";
+		// Converting entered sentence to Character array
+		char[] charArray = sentence.toCharArray();
 		
-		// Going through characters in the Sentence
-		for(int i = 0; i < charList.length; i++){
-			if(charList[i] >= 'A' && charList[i] <='Z' || charList[i] >= 'a' && charList[i] <='z'){
+		// Going through characters in the Sentence and making upper or lowwer case letters
+		sentence = toUpperLowerCase(charArray);
+
+		// Printing new sentence
+		System.out.println(sentence);
+	}
+
+	// Method converting letters in sentence to lower or upper case
+	private static String toUpperLowerCase(char[] charArray) {
+		int count = 1;
+		String newSentence = "";
+		for(int i = 0; i < charArray.length; i++){
+			if(charArray[i] >= 'A' && charArray[i] <='Z' || charArray[i] >= 'a' && charArray[i] <='z'){
 				if(count % 2 != 0){
-					charList[i] = Character.toUpperCase(charList[i]);
+					charArray[i] = Character.toUpperCase(charArray[i]);
 				}
 				else if(count % 2 == 0){
-					charList[i] = Character.toLowerCase(charList[i]);
+					charArray[i] = Character.toLowerCase(charArray[i]);
 				}
 				count++;
 			}
-			newSentence += charList[i];
+			newSentence += charArray[i];
 		}
-		System.out.println(newSentence);
+		return newSentence;
 	}
 
 }
